@@ -1,31 +1,22 @@
-/* Grundaufbau */
+/* Allgemeine Seite */
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, orange, blue);
-    color: white;
+    color: #333;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Der Körper füllt die gesamte Bildschirmhöhe */
-    display: flex;
-    flex-direction: column; /* Stellt sicher, dass die Navigation oben bleibt und der Content darunter kommt */
 }
 
-/* Navigation */
 nav {
-    background-color: #333;
+    background-color: #007BFF;
     padding: 15px;
-    width: 100%; /* Navigation nimmt die gesamte Breite ein */
-    position: fixed; /* Navigation bleibt oben fixiert */
-    top: 0;
-    left: 0;
-    z-index: 10; /* Damit die Navigation über dem Content bleibt */
     text-align: center;
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 nav ul li {
@@ -37,36 +28,62 @@ nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-}
-
-/* Content Bereich */
-.content {
-    padding: 20px;
-    margin-top: 70px; /* Abstand zur Navigation, damit der Content nicht verdeckt wird */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertikale Zentrierung */
-    align-items: center; /* Horizontale Zentrierung */
-    height: calc(100vh - 70px); /* Der Content nimmt den restlichen Platz unter der Navigation ein */
-    text-align: center;
-}
-
-/* News Item */
-.news-item {
-    background-color: #444;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
+nav ul li a:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    padding: 40px 20px;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #007BFF;
+}
+
+p {
+    font-size: 1.2em;
+    color: #555;
+}
+
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     position: fixed;
     width: 100%;
     bottom: 0;
+    box-shadow: 0 -4px 2px -2px gray;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
 }
