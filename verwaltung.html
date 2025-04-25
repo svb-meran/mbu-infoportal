@@ -2,83 +2,104 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Verwaltung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzerverwaltung</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            background: linear-gradient(to right, orange, blue);
+            color: white;
+            margin: 0;
+            padding: 0;
         }
-        input, button {
-            margin: 5px;
-            padding: 8px;
-        }
-        .user-list {
+
+        h1 {
+            text-align: center;
             margin-top: 20px;
         }
-        .user-item {
-            margin-bottom: 10px;
+
+        #userList {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        #userList li {
+            background-color: #444;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
+
     <h1>Benutzerverwaltung</h1>
 
-    <input type="text" id="username" placeholder="Benutzername">
-    <select id="role">
-        <option value="fahrer">Fahrer</option>
-        <option value="admin">Admin</option>
-    </select>
-    <button onclick="addUser()">➕ Hinzufügen</button>
-
-    <div class="user-list" id="userList"></div>
+    <ul id="userList">
+        <!-- Hier werden die Benutzer angezeigt -->
+    </ul>
 
     <script>
-        function getUsers() {
-            const users = localStorage.getItem('benutzer');
-            return users ? JSON.parse(users) : [];
-        }
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
 
-        function saveUsers(users) {
-            localStorage.setItem('benutzer', JSON.stringify(users));
-        }
-
-        function renderUsers() {
-            const list = document.getElementById('userList');
-            list.innerHTML = '';
-            const users = getUsers();
+            const userList = document.getElementById('userList');
+            userList.innerHTML = ''; // Clear previous content
 
             users.forEach((user, index) => {
-                const div = document.createElement('div');
-                div.classList.add('user-item');
-                div.innerHTML = `
-                    👤 ${user.name} - ${user.role}
-                    <button onclick="deleteUser(${index})">🗑️</button>
+                const userItem = document.createElement('li');
+                userItem.innerHTML = `
+                    <span>${user.username}</span>
+                    <span>
+                        <button onclick="toggleUserStatus(${index})">${user.isActive ? 'Sperren' : 'Entsperren'}</button>
+                        <button onclick="deleteUser(${index})">Löschen</button>
+                    </span>
                 `;
-                list.appendChild(div);
+                userList.appendChild(userItem);
             });
         }
 
-        function addUser() {
-            const name = document.getElementById('username').value.trim();
-            const role = document.getElementById('role').value;
-            if (!name) return;
+        function toggleUserStatus(index) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users[index];
+            
+            // Toggle active status
+            user.isActive = !user.isActive;
+            
+            // Save updated users list
+            localStorage.setItem('users', JSON.stringify(users));
 
-            const users = getUsers();
-            users.push({ name, role });
-            saveUsers(users);
-            renderUsers();
-            document.getElementById('username').value = '';
+            loadUsers(); // Reload the user list
         }
 
         function deleteUser(index) {
-            const users = getUsers();
-            users.splice(index, 1);
-            saveUsers(users);
-            renderUsers();
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.splice(index, 1); // Remove user at the specified index
+            
+            // Save updated users list
+            localStorage.setItem('users', JSON.stringify(users));
+
+            loadUsers(); // Reload the user list
         }
 
-        // Seite lädt Benutzer aus localStorage
-        renderUsers();
+        // Load users when page is loaded
+        window.onload = loadUsers;
     </script>
+
 </body>
 </html>
