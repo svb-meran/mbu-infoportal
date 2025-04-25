@@ -84,21 +84,26 @@
     </div>
 
     <script>
-        // Logout-Funktion
+        // Funktion zum Logout
         function logout() {
-            // Entferne Logindaten aus dem Local Storage (oder Session Storage)
+            // Entfernen der Logindaten
             localStorage.removeItem('username');
             localStorage.removeItem('isAdmin');
 
-            // Leitet den Benutzer zur Login-Seite weiter
+            // Weiterleitung zur Login-Seite
             window.location.href = 'login.html';
         }
 
-        // Überprüfen, ob der Benutzer eingeloggt ist
-        if (!localStorage.getItem('username')) {
-            alert("Bitte logge dich ein!");
-            window.location.href = 'login.html'; // Zurück zur Login-Seite, wenn nicht eingeloggt
+        // Überprüfung, ob der Benutzer eingeloggt ist
+        function checkLoginStatus() {
+            // Wenn keine Benutzerdaten vorhanden sind, zurück zur Login-Seite
+            if (!localStorage.getItem('username')) {
+                window.location.href = 'login.html'; // Weiterleitung zur Login-Seite
+            }
         }
+
+        // Die Login-Überprüfung beim Laden der Seite durchführen
+        checkLoginStatus();
     </script>
 </body>
 </html>
