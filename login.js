@@ -13,6 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         "Lukidrd": { passwort: "", isAdmin: false },
         "Bacon": { passwort: "", isAdmin: false },
         "Admin01": { passwort: "#Fi5ccwg", isAdmin: false },
+        "Azubi": { passwort: "Azubilogin1", isAdmin: false },
     };
 
     if (benutzer[benutzername] && benutzer[benutzername].passwort === passwort) {
