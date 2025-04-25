@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Verwaltung</title>
-  <script src="verwalten.js" defer></script>
+    <meta charset="UTF-8">
+    <title>Benutzerverwaltung</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="manageUsers.js" defer></script>
 </head>
 <body>
-  <h1>Benutzerverwaltung</h1>
+    <nav>
+        <ul>
+            <li><a href="übersicht.html">Zurück zur Übersicht</a></li>
+            <li><button onclick="logout()">Logout</button></li>
+        </ul>
+    </nav>
 
-  <input type="text" id="benutzername" placeholder="Benutzername">
-  <input type="text" id="rolle" placeholder="Rolle">
-  <input type="password" id="passwort" placeholder="Passwort">
-  <label>
-  <input type="checkbox" id="istAdmin">
-  Adminrechte
-  </label>
-  <button onclick="benutzerHinzufügen()">Hinzufügen</button>
+    <div class="content">
+        <h1>Benutzerverwaltung</h1>
 
-  <h2>Aktuelle Benutzer:</h2>
-  <ul id="benutzerListe"></ul>
-<script src="manageUsers.js" defer></script>
+        <h2>Benutzer hinzufügen</h2>
+        <input type="text" id="neuerBenutzername" placeholder="Benutzername">
+        <input type="password" id="neuesPasswort" placeholder="Passwort">
+        <label>
+            <input type="checkbox" id="istAdmin">
+            Adminrechte
+        </label>
+        <button onclick="benutzerHinzufügen()">Hinzufügen</button>
+
+        <h2>Benutzerliste</h2>
+        <ul id="benutzerListe"></ul>
+    </div>
 </body>
 </html>
