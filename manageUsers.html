@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerverwaltung</title>
+  <meta charset="UTF-8" />
+  <title>Benutzerverwaltung</title>
 </head>
 <body>
-    <h1>Benutzerverwaltung</h1>
-    <ul id="userList">
-        <!-- Hier werden die Benutzer angezeigt -->
-    </ul>
+  <h1>Benutzerverwaltung</h1>
+  <ul id="userList"></ul>
 
-    <script src="manageUsers.js"></script>
+  <script>
+    function loadUsers() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const userList = document.getElementById('userList');
+      userList.innerHTML = '';
+
+      users.forEach((user, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${user.username}</strong> 
+          - ${user.isActive ? 'Aktiv' : 'Gesperrt'}
+          <button onclick="toggleUserStatus(${index})">
+            ${user.isActive ? 'Sperren' : 'Entsperren'}
+          </button>
+          <button onclick="deleteUser(${index})">Löschen</button>
+        `;
+        userList.appendChild(li);
+      });
+    }
+
+    function toggleUserStatus(index) {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      users[index].isActive = !users[index].isActive;
+      localStorage.setItem('users', JSON.stringify(users));
+      loadUsers();
+    }
+
+    function deleteUser(index) {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      users.splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(users));
+      loadUsers();
+    }
+
+    // Benutzer beim Laden anzeigen
+    window.onload = loadUsers;
+  </script>
 </body>
 </html>
