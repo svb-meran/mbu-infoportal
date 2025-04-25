@@ -1,37 +1,75 @@
-icht<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Login - MBU-Busfahrerdienstportal</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Login | MBU Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, orange, steelblue);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .login-box {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .login-box button {
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-box button:hover {
+      background-color: #1976D2;
+    }
+
+    #loginMessage {
+      margin-top: 15px;
+      color: #ff5555;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login</h2>
+  <div class="login-box">
+    <h2>MBU Login</h2>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Benutzername" required>
-      <input type="password" id="password" placeholder="Passwort" required>
+      <input type="text" id="username" placeholder="Benutzername" required><br>
+      <input type="password" id="password" placeholder="Passwort" required><br>
       <button type="submit">Einloggen</button>
     </form>
     <p id="loginMessage"></p>
   </div>
 
-  <script>
-    const loginForm = document.getElementById("loginForm");
-    const loginMessage = document.getElementById("loginMessage");
-
-    loginForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-
-      // Beispiel-Nutzer
-      if (user === "admin" && pass === "#Fi5ccwg") {
-        window.location.href = "übersicht.html";
-      } else {
-        loginMessage.textContent = "Falscher Benutzername oder Passwort!";
-      }
-    });
-  </script>
+  <script src="login.js"></script>
 </body>
 </html>
