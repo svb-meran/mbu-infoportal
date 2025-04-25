@@ -1,105 +1,23 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerverwaltung</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, orange, blue);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #userList {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        #userList li {
-            background-color: #444;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        button {
-            padding: 5px 10px;
-            margin-left: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Benutzerverwaltung</title>
+  <script defer src="verwalten.js"></script>
 </head>
 <body>
+  <h1>Benutzerverwaltung</h1>
 
-    <h1>Benutzerverwaltung</h1>
+  <h2>Neuen Benutzer hinzufügen</h2>
+  <input type="text" id="benutzername" placeholder="Benutzername" />
+  <input type="password" id="passwort" placeholder="Passwort" />
+  <label>
+    <input type="checkbox" id="adminCheckbox" />
+    Admin
+  </label>
+  <button onclick="benutzerHinzufügen()">Hinzufügen</button>
 
-    <ul id="userList">
-        <!-- Hier werden die Benutzer angezeigt -->
-    </ul>
-
-    <script>
-        function loadUsers() {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            const userList = document.getElementById('userList');
-            userList.innerHTML = ''; // Clear previous content
-
-            users.forEach((user, index) => {
-                const userItem = document.createElement('li');
-                userItem.innerHTML = `
-                    <span>${user.username}</span>
-                    <span>
-                        <button onclick="toggleUserStatus(${index})">${user.isActive ? 'Sperren' : 'Entsperren'}</button>
-                        <button onclick="deleteUser(${index})">Löschen</button>
-                    </span>
-                `;
-                userList.appendChild(userItem);
-            });
-        }
-
-        function toggleUserStatus(index) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users[index];
-            
-            // Toggle active status
-            user.isActive = !user.isActive;
-            
-            // Save updated users list
-            localStorage.setItem('users', JSON.stringify(users));
-
-            loadUsers(); // Reload the user list
-        }
-
-        function deleteUser(index) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            users.splice(index, 1); // Remove user at the specified index
-            
-            // Save updated users list
-            localStorage.setItem('users', JSON.stringify(users));
-
-            loadUsers(); // Reload the user list
-        }
-
-        // Load users when page is loaded
-        window.onload = loadUsers;
-    </script>
-
+  <h2>Benutzerliste</h2>
+  <ul id="benutzerListe"></ul>
 </body>
 </html>
