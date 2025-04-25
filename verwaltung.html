@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verwaltung - MBU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .verwaltung-container {
+            text-align: center;
+            width: 80%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .verwaltung-btns {
+            margin-top: 20px;
+        }
+
+        .verwaltung-btns button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            display: inline-block;
+        }
+
+        .verwaltung-btns button:hover {
+            background-color: #1976D2;
+        }
+
+        .verwaltung-btns button i {
+            margin-right: 8px;
+        }
+
+        .user-list {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .user-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-list th, .user-list td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-list th {
+            background-color: #333;
+            color: white;
+        }
+
+        .user-list td button {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .block-btn {
+            background-color: orange;
+            color: white;
+        }
+
+        .unblock-btn {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="verwaltung-container">
+        <h1>Verwaltung</h1>
+        <p>Als Admin können Sie hier wichtige Funktionen verwalten:</p>
+        <div class="verwaltung-btns">
+            <button onclick="window.location.href='benutzer_hinzufuegen.html'"><i>➕</i> Benutzer Hinzufügen</button>
+            <button onclick="window.location.href='zielcodes_hinzufuegen.html'"><i>🎯</i> Zielcodes Hinzufügen</button>
+            <button onclick="window.location.href='mitteilungen_erstellen.html'"><i>📢</i> Mitteilungen Erstellen</button>
+        </div>
+
+        <div class="user-list">
+            <h2>Benutzerverwaltung</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Benutzername</th>
+                        <th>Status</th>
+                        <th>Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable">
+                    <!-- Dynamisch Benutzerliste hier einfügen -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Beispielhafte Benutzerliste (in der Realität würdest du dies von einem Server oder der Datenbank erhalten)
+        const users = [
+            { username: 'max123', status: 'Aktiv' },
+            { username: 'anna456', status: 'Sperrt' },
+            { username: 'peter789', status: 'Aktiv' },
+        ];
+
+        // Funktion zum Laden der Benutzerliste
+        function loadUserList() {
+            const userTable = document.getElementById('userTable');
+            userTable.innerHTML = '';  // Liste leeren
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.status}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteUser(${index})">Löschen</button>
+                        <button class="${user.status === 'Aktiv' ? 'block-btn' : 'unblock-btn'}" onclick="toggleBlock(${index})">
+                            ${user.status === 'Aktiv' ? 'Sperren' : 'Entsperren'}
+                        </button>
+                    </td>
+                `;
+                userTable.appendChild(row);
+            });
+        }
+
+        // Funktion zum Löschen eines Benutzers
+        function deleteUser(index) {
+            if (confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?')) {
+                users.splice(index, 1);  // Benutzer aus der Liste entfernen
+                loadUserList();  // Benutzerliste neu laden
+            }
+        }
+
+        // Funktion zum Sperren und Entsperren eines Benutzers
+        function toggleBlock(index) {
+            const user = users[index];
+            user.status = (user.status === 'Aktiv') ? 'Sperrt' : 'Aktiv';
+            loadUserList();  // Benutzerliste neu laden
+        }
+
+        // Beim Laden der Seite die Benutzerliste anzeigen
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserList();
+        });
+    </script>
+</body>
+</html>
 
