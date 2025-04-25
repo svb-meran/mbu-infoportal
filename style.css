@@ -1,21 +1,31 @@
-/* Allgemeine Seite */
+/* Grundaufbau */
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, orange, blue);
-    color: #333;
+    color: white;
     margin: 0;
     padding: 0;
+    height: 100vh; /* Der Körper füllt die gesamte Bildschirmhöhe */
+    display: flex;
+    flex-direction: column; /* Stellt sicher, dass die Navigation oben bleibt und der Content darunter kommt */
 }
 
+/* Navigation */
 nav {
     background-color: #333;
     padding: 15px;
+    width: 100%; /* Navigation nimmt die gesamte Breite ein */
+    position: fixed; /* Navigation bleibt oben fixiert */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Damit die Navigation über dem Content bleibt */
     text-align: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -29,12 +39,19 @@ nav ul li a {
     font-weight: bold;
 }
 
+/* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 70px; /* Abstand zur Navigation, damit der Content nicht verdeckt wird */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertikale Zentrierung */
+    align-items: center; /* Horizontale Zentrierung */
+    height: calc(100vh - 70px); /* Der Content nimmt den restlichen Platz unter der Navigation ein */
     text-align: center;
 }
 
+/* News Item */
 .news-item {
     background-color: #444;
     padding: 15px;
@@ -43,6 +60,7 @@ nav ul li a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
