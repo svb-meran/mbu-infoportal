@@ -5,9 +5,9 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Vollbildhöhe */
+    height: 100vh; /* Die Höhe des Bildschirms */
     display: flex;
-    flex-direction: column; /* Damit der Inhalt vertikal gestapelt wird */
+    flex-direction: column; /* Damit die Navigation oben und der Inhalt darunter sind */
 }
 
 /* Navigation bleibt oben */
@@ -41,15 +41,15 @@ nav ul li a {
     font-weight: bold;
 }
 
-/* Der Contentbereich wird vertikal in der Mitte zentriert */
+/* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 80px; /* Platz für die fixierte Navigation */
+    margin-top: 80px; /* Abstand für die fixierte Navigation */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px); /* Vollbildhöhe minus die Höhe der Navigation */
+    height: calc(100vh - 80px); /* Nimmt den Rest des Bildschirms ein (abzüglich der Navigation) */
     text-align: center;
 }
 
