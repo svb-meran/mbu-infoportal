@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzer erstellen</title>
+  <meta charset="UTF-8" />
+  <title>Benutzer erstellen</title>
 </head>
 <body>
-    <h1>Benutzer erstellen</h1>
-    <form id="createUserForm">
-        <label for="username">Benutzername:</label>
-        <input type="text" id="username" required><br><br>
-        <label for="password">Passwort:</label>
-        <input type="password" id="password" required><br><br>
-        <button type="submit">Benutzer erstellen</button>
-    </form>
+  <h1>Neuen Benutzer erstellen</h1>
+  <label>Benutzername:</label>
+  <input type="text" id="username" />
+  <br />
+  <label>Passwort:</label>
+  <input type="password" id="password" />
+  <br /><br />
+  <button onclick="createUser()">Benutzer erstellen</button>
 
-    <script src="createUser.js"></script>
+  <script>
+    function createUser() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (!username || !password) {
+        alert('Bitte beide Felder ausfüllen!');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      const newUser = {
+        username,
+        password,
+        isActive: true,
+        isAdmin: false
+      };
+
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert('Benutzer erstellt!');
+      window.location.href = '';
+    }
+  </script>
 </body>
 </html>
