@@ -1,52 +1,55 @@
-// Benutzer aus dem localStorage laden oder leeres Array
-let benutzerListe = JSON.parse(localStorage.getItem("benutzerListe")) || [];
+document.addEventListener("DOMContentLoaded", () => {
+    benutzerListeAnzeigen();
+});
 
-// Anzeige aktualisieren
-function benutzerAnzeigen() {
-  const ul = document.getElementById("benutzerListe");
-  ul.innerHTML = ""; // Erstmal leeren
+function benutzerListeAnzeigen() {
+    const liste = document.getElementById("benutzerListe");
+    liste.innerHTML = "";
 
-  benutzerListe.forEach((benutzer, index) => {
-    const li = document.createElement("li");
-    li.textContent = `${benutzer.name} (${benutzer.isAdmin ? "Admin" : "Benutzer"})`;
+    const benutzer = JSON.parse(localStorage.getItem("benutzer")) || [];
 
-    const löschenButton = document.createElement("button");
-    löschenButton.textContent = "Löschen";
-    löschenButton.onclick = () => {
-      benutzerListe.splice(index, 1);
-      speichernUndAktualisieren();
-    };
+    benutzer.forEach((b, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${b.name} - ${b.isAdmin ? "Admin" : "Benutzer"}`;
 
-    li.appendChild(löschenButton);
-    ul.appendChild(li);
-  });
+        const löschenButton = document.createElement("button");
+        löschenButton.textContent = "Löschen";
+        löschenButton.onclick = () => benutzerLöschen(index);
+
+        li.appendChild(löschenButton);
+        liste.appendChild(li);
+    });
 }
 
-// Neuen Benutzer hinzufügen
 function benutzerHinzufügen() {
-  const name = document.getElementById("benutzername").value;
-  const passwort = document.getElementById("passwort").value;
-  const isAdmin = document.getElementById("adminCheckbox").checked;
+    const name = document.getElementById("neuerBenutzername").value;
+    const passwort = document.getElementById("neuesPasswort").value;
+    const istAdmin = document.getElementById("istAdmin").checked;
 
-  if (!name || !passwort) {
-    alert("Bitte Benutzername und Passwort eingeben!");
-    return;
-  }
+    if (!name || !passwort) {
+        alert("Benutzername und Passwort dürfen nicht leer sein.");
+        return;
+    }
 
-  benutzerListe.push({ name, passwort, isAdmin });
-  speichernUndAktualisieren();
+    const benutzer = JSON.parse(localStorage.getItem("benutzer")) || [];
+    benutzer.push({ name, passwort, isAdmin: istAdmin });
+    localStorage.setItem("benutzer", JSON.stringify(benutzer));
 
-  // Eingabefelder leeren
-  document.getElementById("benutzername").value = "";
-  document.getElementById("passwort").value = "";
-  document.getElementById("adminCheckbox").checked = false;
+    document.getElementById("neuerBenutzername").value = "";
+    document.getElementById("neuesPasswort").value = "";
+    document.getElementById("istAdmin").checked = false;
+
+    benutzerListeAnzeigen();
 }
 
-// Speichern und neu anzeigen
-function speichernUndAktualisieren() {
-  localStorage.setItem("benutzerListe", JSON.stringify(benutzerListe));
-  benutzerAnzeigen();
+function benutzerLöschen(index) {
+    const benutzer = JSON.parse(localStorage.getItem("benutzer")) || [];
+    benutzer.splice(index, 1);
+    localStorage.setItem("benutzer", JSON.stringify(benutzer));
+    benutzerListeAnzeigen();
 }
 
-// Beim Laden der Seite direkt anzeigen
-window.onload = benutzerAnzeigen;
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
