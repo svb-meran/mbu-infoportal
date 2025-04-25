@@ -1,33 +1,20 @@
-/* Grundaufbau */
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, orange, blue);
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Höhe des gesamten Bildschirms */
-    display: flex;
-    flex-direction: column; /* Damit die Navigation oben bleibt und der Content darunter kommt */
 }
 
-/* Navigation oben fixiert */
 nav {
     background-color: #333;
     padding: 15px;
-    width: 100%;
     text-align: center;
-    position: fixed; /* Fixiert die Navigation oben */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10; /* Sicherstellen, dass die Navigation über anderem Inhalt liegt */
 }
 
-/* Navigation Links */
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 nav ul li {
@@ -41,19 +28,12 @@ nav ul li a {
     font-weight: bold;
 }
 
-/* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 70px; /* Abstand zur fixierten Navigation, damit der Content nicht verdeckt wird */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertikale Zentrierung */
-    align-items: center; /* Horizontale Zentrierung */
-    height: calc(100vh - 70px); /* Der Content-Bereich nimmt den restlichen Platz unterhalb der Navigation ein */
+    margin-top: 20px;
     text-align: center;
 }
 
-/* News Item */
 .news-item {
     background-color: #444;
     padding: 15px;
@@ -62,7 +42,6 @@ nav ul li a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: white;
