@@ -44,12 +44,12 @@ nav ul li a {
 /* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 80px; /* Abstand zur fixierten Navigation */
+    margin-top: 70px; /* Abstand zur fixierten Navigation, damit der Content nicht verdeckt wird */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertikale Zentrierung */
     align-items: center; /* Horizontale Zentrierung */
-    height: calc(100vh - 80px); /* Der Content-Bereich nimmt den restlichen Platz unterhalb der Navigation ein */
+    height: calc(100vh - 70px); /* Der Content-Bereich nimmt den restlichen Platz unterhalb der Navigation ein */
     text-align: center;
 }
 
