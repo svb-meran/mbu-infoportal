@@ -7,7 +7,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     // Beispielnutzer – hier könntest du später echte Nutzer aus JSON laden
     const benutzer = {
         "Jolicraft": { passwort: "#Fi5ccwg", isAdmin: true },
-        "100nofunn100": { passwort: "112110", isAdmin: false }
+        "100nofunn100": { passwort: "112110", isAdmin: false },
+        "merano1983": { passwort: "", isAdmin: false },
+        "S0ul": { passwort: "", isAdmin: false },
+        "Lukidrd": { passwort: "", isAdmin: false },
+        "Bacon": { passwort: "", isAdmin: false },
+        "Admin01": { passwort: "#Fi5ccwg", isAdmin: false },
     };
 
     if (benutzer[benutzername] && benutzer[benutzername].passwort === passwort) {
