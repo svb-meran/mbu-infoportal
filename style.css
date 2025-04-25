@@ -1,26 +1,29 @@
+/* Grundaufbau */
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, orange, blue);
     color: white;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh; /* Vollbildhöhe */
     display: flex;
-    justify-content: center; /* Horizontal zentrieren */
-    align-items: center;     /* Vertikal zentrieren */
+    flex-direction: column; /* Damit der Inhalt vertikal gestapelt wird */
+    justify-content: center; /* Zentriert den gesamten Inhalt */
     text-align: center;
 }
 
+/* Navigation */
 nav {
     background-color: #333;
     padding: 15px;
-    text-align: center;
     width: 100%;
+    text-align: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -34,12 +37,13 @@ nav ul li a {
     font-weight: bold;
 }
 
+/* Content-Bereich */
 .content {
     padding: 20px;
     margin-top: 20px;
-    text-align: center;
 }
 
+/* News Item */
 .news-item {
     background-color: #444;
     padding: 15px;
@@ -48,6 +52,7 @@ nav ul li a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
