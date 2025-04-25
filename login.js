@@ -1,26 +1,23 @@
-// Dummy-Benutzer nur beim ersten Laden einfügen:
-if (!localStorage.getItem("users")) {
-  const defaultUsers = [
-    { username: "admin", password: "1234", role: "admin" },
-    { username: "fahrer1", password: "abcd", role: "fahrer" }
-  ];
-  localStorage.setItem("users", JSON.stringify(defaultUsers));
-}
+// login.js
 
-// Login prüfen
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-  const user = users.find(u => u.username === username && u.password === password);
-
-  if (user) {
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-    window.location.href = "dashboard.html"; // Weiterleitung zur Übersicht
-  } else {
-    document.getElementById("loginMessage").textContent = "❌ Falsche Zugangsdaten!";
-  }
+    // Einfache Benutzername- und Passwortüberprüfung
+    // Das sollte durch eine sichere Datenbankanbindung ersetzt werden!
+    if (username === 'admin' && password === 'adminpass') {
+        // Erfolgreiches Login -> Weiterleitung zum Dashboard und Admin-Status setzen
+        localStorage.setItem('isAdmin', 'true');
+        window.location.href = 'dashboard.html';
+    } else if (username === 'fahrer' && password === 'fahrerpass') {
+        // Erfolgreiches Login für normale Benutzer -> Weiterleitung zum Dashboard
+        localStorage.setItem('isAdmin', 'false');
+        window.location.href = 'dashboard.html';
+    } else {
+        // Fehlerhafte Anmeldung -> Fehlermeldung anzeigen
+        document.getElementById('loginMessage').innerText = 'Falscher Benutzername oder Passwort!';
+    }
 });
