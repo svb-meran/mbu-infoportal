@@ -11,9 +11,12 @@ function einloggen() {
     const user = benutzerListe.find(b => b.name === benutzername && b.passwort === passwort);
 
     if (user) {
-        localStorage.setItem("eingeloggt", "true");
-        localStorage.setItem("aktuellerBenutzer", JSON.stringify(user));
+    localStorage.setItem("eingeloggt", "true");
+    localStorage.setItem("aktuellerBenutzer", JSON.stringify(user));
+    setTimeout(() => {
         window.location.href = "übersicht.html";
+    }, 200); // kurzer Delay, damit localStorage sicher gespeichert ist
+
     } else {
         alert("Falsche Login-Daten!");
     }
