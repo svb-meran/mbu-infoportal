@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Benutzerverwaltung</title>
-  <script defer src="verwalten.js"></script>
+  <meta charset="UTF-8">
+  <title>Verwaltung</title>
+  <script src="verwalten.js" defer></script>
 </head>
 <body>
   <h1>Benutzerverwaltung</h1>
 
-  <h2>Neuen Benutzer hinzufügen</h2>
-  <input type="text" id="benutzername" placeholder="Benutzername" />
-  <input type="password" id="passwort" placeholder="Passwort" />
-  <label>
-    <input type="checkbox" id="adminCheckbox" />
-    Admin
-  </label>
+  <input type="text" id="benutzername" placeholder="Benutzername">
+  <input type="text" id="rolle" placeholder="Rolle">
+  <input type="password" id="passwort" placeholder="Passwort">
   <button onclick="benutzerHinzufügen()">Hinzufügen</button>
 
-  <h2>Benutzerliste</h2>
+  <h2>Aktuelle Benutzer:</h2>
   <ul id="benutzerListe"></ul>
 </body>
 </html>
