@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Übersicht</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Übersicht</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav>
-        <h2>Unternehmensportal</h2>
-        <button onclick="logout()">🚪 Logout</button>
-    </nav>
+  <!-- Navigationsleiste -->
+  <nav>
+    <ul>
+      <li><a href="dienstplan.html">📅 Dienstplan</a></li>
+      <li><a href="zielcodes.html">🎯 Zielcodes</a></li>
+      <li><a href="mitteilungen.html">📢 Mitteilungen</a></li>
+      <li id="adminLink" style="display: none;"><a href="verwaltung.html">🛠 Verwaltung</a></li>
+      <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+    </ul>
+  </nav>
 
-    <div class="content">
-        <h1>Willkommen!</h1>
-        <p id="benutzerName"></p>
+  <!-- Hauptinhalt -->
+  <div class="content">
+    <h1 id="willkommen">Willkommen!</h1>
+    <!-- Weitere Inhalte hier -->
+  </div>
 
-        <div class="button-grid">
-            <button onclick="window.location.href='dienstplan.html'">🚌 Dienstplan</button>
-            <button onclick="window.location.href='zielcodes.html'">🎯 Zielcodes</button>
-            <button onclick="window.location.href='mitteilungen.html'">📰 Mitteilungen</button>
-            <button onclick="window.location.href='einstellungen.html'">⚙️ Einstellungen</button>
-            <button id="adminBtn" style="display:none;" onclick="window.location.href='verwaltung.html'">🛠️ Verwaltung</button>
-        </div>
-    </div>
+  <script>
+    // Prüfen, ob der Benutzer eingeloggt ist
+    if (localStorage.getItem("eingeloggt") !== "true") {
+      window.location.href = "login.html"; // Umleitung zur Login-Seite
+    }
 
-    <script>
-        const eingeloggt = localStorage.getItem("eingeloggt");
-        const benutzer = JSON.parse(localStorage.getItem("aktuellerBenutzer"));
+    // Begrüßungstext ändern
+    const benutzer = localStorage.getItem("aktuellerBenutzer");
+    document.getElementById("willkommen").textContent = `Willkommen, ${benutzer}`;
 
-        if (eingeloggt !== "true" || !benutzer) {
-            alert("Bitte logge dich ein!");
-            window.location.href = "login.html";
-        } else {
-            document.getElementById("benutzerName").innerText = "Angemeldet als: " + benutzer.name;
-            if (benutzer.rolle === "admin") {
-                document.getElementById("adminBtn").style.display = "inline-block";
-            }
-        }
+    // Admin-Link anzeigen, wenn der Benutzer ein Admin ist
+    if (localStorage.getItem("isAdmin") === "true") {
+      document.getElementById("adminLink").style.display = "inline-block"; // Admin-Link sichtbar machen
+    }
 
-        function logout() {
-            localStorage.removeItem("eingeloggt");
-            localStorage.removeItem("aktuellerBenutzer");
-            window.location.href = "login.html";
-        }
-    </script>
+    // Logout-Funktion
+    function logout() {
+      localStorage.clear(); // Alle Daten im LocalStorage löschen
+      window.location.href = "login.html"; // Umleitung zur Login-Seite
+    }
+  </script>
 </body>
 </html>
