@@ -8,7 +8,8 @@ body {
     height: 100vh; /* Vollbildhöhe */
     display: flex;
     flex-direction: column; /* Damit der Inhalt vertikal gestapelt wird */
-    justify-content: center; /* Zentriert den gesamten Inhalt */
+    justify-content: center; /* Zentriert den gesamten Inhalt vertikal */
+    align-items: center; /* Zentriert den gesamten Inhalt horizontal */
     text-align: center;
 }
 
