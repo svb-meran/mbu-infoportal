@@ -5,12 +5,12 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Die Höhe des Bildschirms */
+    height: 100vh; /* Höhe des gesamten Bildschirms */
     display: flex;
-    flex-direction: column; /* Damit die Navigation oben und der Inhalt darunter sind */
+    flex-direction: column; /* Damit die Navigation oben ist und der Content darunter kommt */
 }
 
-/* Navigation bleibt oben fixiert */
+/* Navigation oben fixiert */
 nav {
     background-color: #333;
     padding: 15px;
@@ -20,7 +20,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10; /* Stellt sicher, dass die Navigation über anderen Inhalten bleibt */
+    z-index: 10; /* Sicherstellen, dass Navigation über anderem Inhalt liegt */
 }
 
 /* Navigation Links */
@@ -44,13 +44,13 @@ nav ul li a {
 /* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 80px; /* Abstand für die fixierte Navigation */
+    margin-top: 80px; /* Abstand zur fixierten Navigation */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertikale Zentrierung */
     align-items: center; /* Horizontale Zentrierung */
-    height: calc(100vh - 80px); /* Nimmt den Rest des Bildschirms ein (abzüglich der Navigation) */
     text-align: center;
+    flex-grow: 1; /* Der Content wächst und nimmt den Rest des Bildschirms ein */
 }
 
 /* News Item */
