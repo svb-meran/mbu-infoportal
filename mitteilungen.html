@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitteilungen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Mitteilungen</h1>
+        <button onclick="location.href='index.html'">Logout</button>
+    </header>
+
+    <form id="mitteilungForm">
+        <input type="text" id="title" placeholder="Titel" required>
+        <textarea id="message" placeholder="Nachricht" required></textarea>
+        <button type="submit">Erstellen</button>
+    </form>
+
+    <ul id="mitteilungList"></ul>
+
+    <footer>SVB Meran</footer>
+    <script src="manageMessages.js"></script>
+</body>
+</html>
