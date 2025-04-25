@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBU Übersicht</title>
+    <title>Übersicht - MBU</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,20 +13,46 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
         }
 
-        .übersicht-container {
+        .header {
+            width: 100%;
+            text-align: right;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        .header button {
+            padding: 10px;
+            background-color: #ff5722;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .header button:hover {
+            background-color: #e64a19;
+        }
+
+        .dashboard-container {
             text-align: center;
+            margin-top: 30px;
             width: 80%;
         }
 
-        .übersicht-btns {
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .dashboard-btns {
             margin-top: 20px;
         }
 
-        .übersicht-btns button {
+        .dashboard-btns button {
             padding: 10px 20px;
             margin: 10px;
             font-size: 16px;
@@ -35,40 +61,44 @@
             border-radius: 5px;
             background-color: #2196F3;
             color: white;
-            display: inline-block;
         }
 
-        .übersicht-btns button:hover {
+        .dashboard-btns button:hover {
             background-color: #1976D2;
-        }
-
-        .übersicht-btns button i {
-            margin-right: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="übersicht-container">
-        <h1>Willkommen im Dashboard</h1>
-        <p>Hier können Sie auf verschiedene Funktionen zugreifen:</p>
-        <div class="übersicht-btns">
-            <button onclick="window.location.href='dienstplan.html'"><i>🚌</i> Dienstplan</button>
+    <div class="header">
+        <button onclick="logout()">Log Out</button>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>Willkommen im Dashboard!</h1>
+        <div class="dashboard-btns">
+            <button onclick="window.location.href='dienstplan.html'"><i>📅</i> Dienstplan</button>
             <button onclick="window.location.href='zielcodes.html'"><i>🎯</i> Zielcodes</button>
             <button onclick="window.location.href='mitteilungen.html'"><i>📢</i> Mitteilungen</button>
-            <button onclick="window.location.href='verwaltung.html'" id="adminBtn"><i>⚙️</i> Verwaltung</button> <!-- Nur für Admin -->
+            <button onclick="window.location.href='verwaltung.html'"><i>⚙️</i> Verwaltung</button>
         </div>
     </div>
 
     <script>
-        // Prüfen, ob der Benutzer ein Admin ist
-        document.addEventListener('DOMContentLoaded', function() {
-            const isAdmin = localStorage.getItem('isAdmin') === 'true';
+        // Logout-Funktion
+        function logout() {
+            // Entferne Logindaten aus dem Local Storage (oder Session Storage)
+            localStorage.removeItem('username');
+            localStorage.removeItem('isAdmin');
 
-            if (!isAdmin) {
-                // Wenn kein Admin, verstecke den Verwaltungs-Button
-                document.getElementById('adminBtn').style.display = 'none';
-            }
-        });
+            // Leitet den Benutzer zur Login-Seite weiter
+            window.location.href = 'login.html';
+        }
+
+        // Überprüfen, ob der Benutzer eingeloggt ist
+        if (!localStorage.getItem('username')) {
+            alert("Bitte logge dich ein!");
+            window.location.href = 'login.html'; // Zurück zur Login-Seite, wenn nicht eingeloggt
+        }
     </script>
 </body>
 </html>
