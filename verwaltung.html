@@ -3,31 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerverwaltung</title>
+    <title>Verwaltung</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Benutzerverwaltung</h1>
-    
-    <!-- Benutzer hinzufügen Form -->
-    <div>
-        <input type="text" id="neuerBenutzername" placeholder="Benutzername">
-        <input type="password" id="neuesPasswort" placeholder="Passwort">
-        <label>
-            Admin:
-            <input type="checkbox" id="istAdmin">
-        </label>
-        <button onclick="benutzerHinzufügen()">Benutzer hinzufügen</button>
+    <header>
+        <h1>Verwaltung</h1>
+        <button onclick="location.href='index.html'">Logout</button>
+    </header>
+
+    <div class="btns">
+        <button onclick="location.href='mitteilungen.html'">Mitteilungen</button>
+        <button onclick="location.href='dienstplan.html'">Dienstplan</button>
+        <button onclick="location.href='benutzerverwaltung.html'">Benutzer</button>
     </div>
-    
-    <h2>Benutzerliste</h2>
-    <ul id="benutzerListe">
-        <!-- Benutzer werden hier angezeigt -->
-    </ul>
 
-    <!-- Logout-Button -->
-    <button onclick="logout()">Logout</button>
-
-    <script src="manageUsers.js"></script>
+    <footer>SVB Meran</footer>
 </body>
 </html>
