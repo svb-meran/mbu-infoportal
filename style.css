@@ -10,7 +10,7 @@ body {
     flex-direction: column; /* Damit die Navigation oben und der Inhalt darunter sind */
 }
 
-/* Navigation bleibt oben */
+/* Navigation bleibt oben fixiert */
 nav {
     background-color: #333;
     padding: 15px;
@@ -47,8 +47,8 @@ nav ul li a {
     margin-top: 80px; /* Abstand für die fixierte Navigation */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Vertikale Zentrierung */
+    align-items: center; /* Horizontale Zentrierung */
     height: calc(100vh - 80px); /* Nimmt den Rest des Bildschirms ein (abzüglich der Navigation) */
     text-align: center;
 }
