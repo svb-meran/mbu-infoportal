@@ -2,32 +2,32 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benutzerverwaltung</title>
     <link rel="stylesheet" href="style.css">
-    <script src="manageUsers.js" defer></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="übersicht.html">Zurück zur Übersicht</a></li>
-            <li><button onclick="logout()">Logout</button></li>
-        </ul>
-    </nav>
-
-    <div class="content">
-        <h1>Benutzerverwaltung</h1>
-
-        <h2>Benutzer hinzufügen</h2>
+    <h1>Benutzerverwaltung</h1>
+    
+    <!-- Benutzer hinzufügen Form -->
+    <div>
         <input type="text" id="neuerBenutzername" placeholder="Benutzername">
         <input type="password" id="neuesPasswort" placeholder="Passwort">
         <label>
+            Admin:
             <input type="checkbox" id="istAdmin">
-            Adminrechte
         </label>
-        <button onclick="benutzerHinzufügen()">Hinzufügen</button>
-
-        <h2>Benutzerliste</h2>
-        <ul id="benutzerListe"></ul>
+        <button onclick="benutzerHinzufügen()">Benutzer hinzufügen</button>
     </div>
+    
+    <h2>Benutzerliste</h2>
+    <ul id="benutzerListe">
+        <!-- Benutzer werden hier angezeigt -->
+    </ul>
+
+    <!-- Logout-Button -->
+    <button onclick="logout()">Logout</button>
+
+    <script src="manageUsers.js"></script>
 </body>
 </html>
