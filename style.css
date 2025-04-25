@@ -5,23 +5,25 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Der Körper füllt die gesamte Bildschirmhöhe */
+    height: 100vh; /* Höhe des gesamten Bildschirms */
     display: flex;
-    flex-direction: column; /* Stellt sicher, dass die Navigation oben bleibt und der Content darunter kommt */
+    flex-direction: column; /* Damit die Navigation oben bleibt und der Content darunter kommt */
 }
 
-/* Navigation */
+/* Navigation oben fixiert */
 nav {
     background-color: #333;
     padding: 15px;
-    width: 100%; /* Navigation nimmt die gesamte Breite ein */
-    position: fixed; /* Navigation bleibt oben fixiert */
+    width: 100%;
+    text-align: center;
+    position: fixed; /* Fixiert die Navigation oben */
     top: 0;
     left: 0;
-    z-index: 10; /* Damit die Navigation über dem Content bleibt */
-    text-align: center;
+    right: 0;
+    z-index: 10; /* Sicherstellen, dass die Navigation über anderem Inhalt liegt */
 }
 
+/* Navigation Links */
 nav ul {
     list-style: none;
     padding: 0;
@@ -42,12 +44,12 @@ nav ul li a {
 /* Content Bereich */
 .content {
     padding: 20px;
-    margin-top: 70px; /* Abstand zur Navigation, damit der Content nicht verdeckt wird */
+    margin-top: 70px; /* Abstand zur fixierten Navigation, damit der Content nicht verdeckt wird */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertikale Zentrierung */
     align-items: center; /* Horizontale Zentrierung */
-    height: calc(100vh - 70px); /* Der Content nimmt den restlichen Platz unter der Navigation ein */
+    height: calc(100vh - 70px); /* Der Content-Bereich nimmt den restlichen Platz unterhalb der Navigation ein */
     text-align: center;
 }
 
