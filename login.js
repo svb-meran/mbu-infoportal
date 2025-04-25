@@ -1,23 +1,22 @@
-const benutzerListe = [
-    { name: "admin", passwort: "admin123", rolle: "admin" },
-    { name: "fahrer1", passwort: "bus123", rolle: "fahrer" },
-    { name: "fahrer2", passwort: "linie210", rolle: "fahrer" }
-];
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function einloggen() {
-    const benutzername = document.getElementById("benutzername").value;
-    const passwort = document.getElementById("passwort").value;
+    const benutzername = document.getElementById("username").value;
+    const passwort = document.getElementById("password").value;
 
-    const user = benutzerListe.find(b => b.name === benutzername && b.passwort === passwort);
+    // Beispielnutzer – hier könntest du später echte Nutzer aus JSON laden
+    const benutzer = {
+        "admin": { passwort: "adminpass", isAdmin: true },
+        "fahrer1": { passwort: "1234", isAdmin: false }
+    };
 
-    if (user) {
-    localStorage.setItem("eingeloggt", "true");
-    localStorage.setItem("aktuellerBenutzer", JSON.stringify(user));
-    setTimeout(() => {
+    if (benutzer[benutzername] && benutzer[benutzername].passwort === passwort) {
+        localStorage.setItem("eingeloggt", "true");
+        localStorage.setItem("aktuellerBenutzer", benutzername);
+        localStorage.setItem("isAdmin", benutzer[benutzername].isAdmin);
+
         window.location.href = "übersicht.html";
-    }, 200); // kurzer Delay, damit localStorage sicher gespeichert ist
-
     } else {
-        alert("Falsche Login-Daten!");
+        alert("Falscher Benutzername oder Passwort!");
     }
-}
+});
