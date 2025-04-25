@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
 <html lang="de">
-<nav>
-    <ul>
-        <li><a href="index.html">Startseite</a></li>
-        <li><a href="neuigkeiten.html">Neuigkeiten</a></li>
-        <li><a href="blog.html">Blogs</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="galerie.html">Galerie</a></li>
-    </ul>
-</nav>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Meine Website</title>
+  <meta charset="UTF-8">
+  <title>Login - MBU-Busfahrerportal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Login Bereich</h1>
-    <form action="login-prozess.php" method="post">
-        <label for="username">Benutzername:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Passwort:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="Einloggen">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Benutzername" required>
+      <input type="password" id="password" placeholder="Passwort" required>
+      <button type="submit">Einloggen</button>
     </form>
+    <p id="loginMessage"></p>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    loginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      // Beispiel-Nutzer
+      if (user === "admin" && pass === "#Fi5ccwg") {
+        window.location.href = "dienstplan.html";
+      } else {
+        loginMessage.textContent = "Falscher Benutzername oder Passwort!";
+      }
+    });
+  </script>
 </body>
 </html>
