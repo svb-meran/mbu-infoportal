@@ -11,7 +11,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         "merano1983": { passwort: "sicilia1983", isAdmin: false },
         "S0ul": { passwort: "", isAdmin: false },
         "Lukidrd": { passwort: "", isAdmin: false },
-        "Bacon": { passwort: "", isAdmin: false },
+        "Bacon": { passwort: "Bacon123", isAdmin: false },
         "Admin01": { passwort: "#Fi5ccwg", isAdmin: false },
         "Azubi": { passwort: "Azubilogin1", isAdmin: false },
     };
