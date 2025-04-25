@@ -1,52 +1,52 @@
-// Funktion, um die Benutzer aus localStorage zu laden und anzuzeigen
-function loadUsers() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+// Benutzer aus dem localStorage laden oder leeres Array
+let benutzerListe = JSON.parse(localStorage.getItem("benutzerListe")) || [];
 
-    // Benutzer anzeigen
-    const userList = document.getElementById('userList');
-    userList.innerHTML = ''; // Liste zurücksetzen
+// Anzeige aktualisieren
+function benutzerAnzeigen() {
+  const ul = document.getElementById("benutzerListe");
+  ul.innerHTML = ""; // Erstmal leeren
 
-    users.forEach((user, index) => {
-        const userItem = document.createElement('li');
-        userItem.textContent = user.username; // Benutzername anzeigen
+  benutzerListe.forEach((benutzer, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${benutzer.name} (${benutzer.isAdmin ? "Admin" : "Benutzer"})`;
 
-        // Sperren oder Entsperren Button hinzufügen
-        const lockButton = document.createElement('button');
-        lockButton.textContent = user.locked ? 'Entsperren' : 'Sperren';
-        lockButton.addEventListener('click', () => toggleLockUser(index));
+    const löschenButton = document.createElement("button");
+    löschenButton.textContent = "Löschen";
+    löschenButton.onclick = () => {
+      benutzerListe.splice(index, 1);
+      speichernUndAktualisieren();
+    };
 
-        // Löschen Button hinzufügen
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Löschen';
-        deleteButton.addEventListener('click', () => deleteUser(index));
-
-        // Buttons zu Listenelement hinzufügen
-        userItem.appendChild(lockButton);
-        userItem.appendChild(deleteButton);
-        userList.appendChild(userItem);
-    });
+    li.appendChild(löschenButton);
+    ul.appendChild(li);
+  });
 }
 
-// Funktion, um einen Benutzer zu löschen
-function deleteUser(index) {
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    users.splice(index, 1); // Benutzer aus der Liste entfernen
-    localStorage.setItem('users', JSON.stringify(users)); // Die Liste im localStorage speichern
-    loadUsers(); // Liste neu laden
+// Neuen Benutzer hinzufügen
+function benutzerHinzufügen() {
+  const name = document.getElementById("benutzername").value;
+  const passwort = document.getElementById("passwort").value;
+  const isAdmin = document.getElementById("adminCheckbox").checked;
+
+  if (!name || !passwort) {
+    alert("Bitte Benutzername und Passwort eingeben!");
+    return;
+  }
+
+  benutzerListe.push({ name, passwort, isAdmin });
+  speichernUndAktualisieren();
+
+  // Eingabefelder leeren
+  document.getElementById("benutzername").value = "";
+  document.getElementById("passwort").value = "";
+  document.getElementById("adminCheckbox").checked = false;
 }
 
-// Funktion, um einen Benutzer zu sperren oder zu entsperren
-function toggleLockUser(index) {
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users[index];
-
-    // Wenn der Benutzer nicht gesperrt ist, sperre ihn, ansonsten entsperre ihn
-    user.locked = !user.locked;
-
-    users[index] = user; // Benutzer zurück in die Liste setzen
-    localStorage.setItem('users', JSON.stringify(users)); // Die Liste speichern
-    loadUsers(); // Liste neu laden
+// Speichern und neu anzeigen
+function speichernUndAktualisieren() {
+  localStorage.setItem("benutzerListe", JSON.stringify(benutzerListe));
+  benutzerAnzeigen();
 }
 
-// Benutzerliste beim Laden der Seite anzeigen
-window.onload = loadUsers;
+// Beim Laden der Seite direkt anzeigen
+window.onload = benutzerAnzeigen;
