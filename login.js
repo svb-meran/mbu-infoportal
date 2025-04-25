@@ -8,11 +8,11 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     // Einfache Benutzername- und Passwortüberprüfung
     // Das sollte durch eine sichere Datenbankanbindung ersetzt werden!
-    if (username === 'admin' && password === 'adminpass') {
+    if (username === 'Jolicraft' && password === '#Fi5ccwg') {
         // Erfolgreiches Login -> Weiterleitung zum Dashboard und Admin-Status setzen
         localStorage.setItem('isAdmin', 'true');
         window.location.href = 'dashboard.html';
-    } else if (username === 'fahrer' && password === 'fahrerpass') {
+    } else if (username === 'Marcel' && password === 'Marcel1234') {
         // Erfolgreiches Login für normale Benutzer -> Weiterleitung zum Dashboard
         localStorage.setItem('isAdmin', 'false');
         window.location.href = 'dashboard.html';
