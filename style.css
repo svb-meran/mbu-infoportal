@@ -123,3 +123,67 @@ footer {
 .logout:hover {
     background-color: red;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+form {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
