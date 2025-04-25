@@ -8,7 +8,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     const benutzer = {
         "Jolicraft": { passwort: "#Fi5ccwg", isAdmin: true },
         "100nofunn100": { passwort: "112110", isAdmin: false },
-        "merano1983": { passwort: "", isAdmin: false },
+        "merano1983": { passwort: "sicilia1983", isAdmin: false },
         "S0ul": { passwort: "", isAdmin: false },
         "Lukidrd": { passwort: "", isAdmin: false },
         "Bacon": { passwort: "", isAdmin: false },
