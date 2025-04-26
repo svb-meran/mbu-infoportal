@@ -55,4 +55,3 @@ function logout() {
 }
 
 document.addEventListener('DOMContentLoaded', zeigeMitteilungen);
-
