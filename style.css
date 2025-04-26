@@ -123,3 +123,53 @@ footer {
 .logout:hover {
     background-color: red;
 }
+
+
+#mitteilungenListe {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.mitteilung {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.5s ease forwards;
+    opacity: 0;
+}
+
+.mitteilung h3 {
+    margin-top: 0;
+}
+
+.mitteilung small {
+    color: #bbb;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.mitteilung button {
+    background: #ff5555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
