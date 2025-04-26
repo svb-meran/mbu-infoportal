@@ -19,12 +19,16 @@
         <h1>Mitteilungen</h1>
         <div id="mitteilungenListe"></div>
 
-        <div id="mitteilungFormular" style="margin-top: 30px;">
-            <h2>Neue Mitteilung erstellen</h2>
-            <input type="text" id="titel" placeholder="Titel"><br><br>
-            <textarea id="inhalt" placeholder="Mitteilungstext" rows="5"></textarea><br><br>
-            <button onclick="mitteilungHinzufügen()">Mitteilung erstellen</button>
-        </div>
+        <div id="erstellungsbereich" style="display: none;">
+    <h2>Neue Mitteilung erstellen</h2>
+    <input type="text" id="titel" placeholder="Titel">
+    <textarea id="inhalt" placeholder="Inhalt der Mitteilung"></textarea>
+    <button onclick="erstelleMitteilung()">Mitteilung erstellen</button>
+</div>
+
+<div id="mitteilungenListe"></div>
+
+<script src="mitteilungen.js"></script>
     </div>
 
 </body>
