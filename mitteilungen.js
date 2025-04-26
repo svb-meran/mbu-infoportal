@@ -34,7 +34,7 @@ function erstelleMitteilung() {
         // Speichern
         localStorage.setItem('mitteilungen', JSON.stringify(mitteilungen));
 
-        // Neu laden
+        // Neu laden (mitteilungen aktualisieren)
         ladeMitteilungen();
 
         // Felder leeren
@@ -48,7 +48,7 @@ function erstelleMitteilung() {
 // Mitteilungen anzeigen
 function ladeMitteilungen() {
     const liste = document.getElementById('mitteilungenListe');
-    liste.innerHTML = '';
+    liste.innerHTML = '';  // Leeren der Liste, bevor wir sie neu füllen
 
     mitteilungen.forEach((m, index) => {
         const mitteilungDiv = document.createElement('div');
@@ -73,5 +73,5 @@ function mitteilungLoeschen(index) {
 }
 
 // Beim Laden der Seite:
-anzeigenErstellungsbereich();
-ladeMitteilungen();
+anzeigenErstellungsbereich(); // Anzeigen ob Admin oder nicht
+ladeMitteilungen(); // Laden und Anzeigen der Mitteilungen
