@@ -4,32 +4,21 @@
     <meta charset="UTF-8">
     <title>Mitteilungen</title>
     <link rel="stylesheet" href="style.css">
-    <script src="mitteilungen.js" defer></script>
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="übersicht.html">Übersicht</a></li>
-            <li><a href="mitteilungen.html">Mitteilungen</a></li>
-            <li><a href="#" onclick="logout()">Logout</a></li>
-        </ul>
+        <!-- Hier dein Menü, falls du eins hast -->
     </nav>
 
-    <div class="content">
-        <h1>Mitteilungen</h1>
-        <div id="mitteilungenListe"></div>
-
-        <div id="erstellungsbereich" style="display: none;">
-    <h2>Neue Mitteilung erstellen</h2>
-    <input type="text" id="titel" placeholder="Titel">
-    <textarea id="inhalt" placeholder="Inhalt der Mitteilung"></textarea>
-    <button onclick="erstelleMitteilung()">Mitteilung erstellen</button>
-</div>
-
-<div id="mitteilungenListe"></div>
-
-<script src="mitteilungen.js"></script>
+    <div id="erstellungsbereich" style="display: none; margin: 20px;">
+        <h2>Neue Mitteilung erstellen</h2>
+        <input type="text" id="titel" placeholder="Titel"><br><br>
+        <textarea id="inhalt" placeholder="Inhalt der Mitteilung"></textarea><br><br>
+        <button onclick="erstelleMitteilung()">Mitteilung erstellen</button>
     </div>
 
+    <div id="mitteilungenListe" style="margin: 20px;"></div>
+
+    <script src="mitteilungen.js"></script>
 </body>
 </html>
