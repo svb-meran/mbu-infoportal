@@ -1,78 +1,54 @@
+// Mitteilungen laden
 let mitteilungen = JSON.parse(localStorage.getItem('mitteilungen')) || [];
+const aktuellerBenutzer = localStorage.getItem('aktuellerBenutzer') || '';
+const isAdminStatus = JSON.parse(localStorage.getItem('isAdmin'));
 
-function getAktuellerBenutzer() {
-    return JSON.parse(localStorage.getItem('aktuellerBenutzer'));
+function istAdmin() {
+    return isAdminStatus === true;
 }
 
-function isAdmin() {
-    const user = getAktuellerBenutzer();
-    return user && user.isAdmin;
+function anzeigenErstellungsbereich() {
+    if (istAdmin()) {
+        document.getElementById('erstellungsbereich').style.display = 'block';
+    }
 }
 
 function ladeMitteilungen() {
     const liste = document.getElementById('mitteilungenListe');
     liste.innerHTML = '';
-
-    mitteilungen.slice().reverse().forEach((mitteilung, index) => {
-        const div = document.createElement('div');
-        div.className = 'mitteilung';
-        div.innerHTML = `
-            <h3>${mitteilung.titel}</h3>
-            <small>Von: ${mitteilung.absender} | Datum: ${mitteilung.datum}</small>
-            <p>${mitteilung.inhalt}</p>
-            ${isAdmin() ? `
-                <button onclick="löscheMitteilung(${mitteilungen.length - 1 - index})">Löschen</button>
-            ` : ''}
+    mitteilungen.forEach((m, index) => {
+        const element = document.createElement('div');
+        element.className = 'mitteilung';
+        element.innerHTML = `
+            <h3>${m.titel}</h3>
+            <p>${m.inhalt}</p>
+            <small>Von: ${m.absender} | Am: ${m.datum}</small>
         `;
-        liste.appendChild(div);
+        liste.appendChild(element);
     });
-
-    // Formular nur für Admins sichtbar
-    document.getElementById('mitteilungFormular').style.display = isAdmin() ? 'block' : 'none';
 }
 
 function erstelleMitteilung() {
-    if (!isAdmin()) {
-        alert("Nur Admins dürfen Mitteilungen erstellen!");
-        return;
-    }
-
     const titel = document.getElementById('titel').value.trim();
     const inhalt = document.getElementById('inhalt').value.trim();
-    const user = getAktuellerBenutzer();
+    const absender = aktuellerBenutzer || 'Unbekannt';
+    const datum = new Date().toLocaleString();
 
-    if (!titel || !inhalt) {
-        alert("Bitte alle Felder ausfüllen.");
-        return;
-    }
-
-    const neueMitteilung = {
-        titel: titel,
-        inhalt: inhalt,
-        absender: user.username,
-        datum: new Date().toLocaleString()
-    };
-
-    mitteilungen.push(neueMitteilung);
-    localStorage.setItem('mitteilungen', JSON.stringify(mitteilungen));
-
-    document.getElementById('titel').value = '';
-    document.getElementById('inhalt').value = '';
-
-    ladeMitteilungen();
-}
-
-function löscheMitteilung(index) {
-    if (!isAdmin()) {
-        alert("Nur Admins dürfen löschen!");
-        return;
-    }
-    if (confirm("Möchtest du diese Mitteilung wirklich löschen?")) {
-        mitteilungen.splice(index, 1);
-        localStorage.setItem('mitteilungen', JSON.stringify(mitteilungen));
+    if (titel && inhalt) {
+        mitteilungen.push({ titel, inhalt, absender, datum });
+        speichern();
         ladeMitteilungen();
+        document.getElementById('titel').value = '';
+        document.getElementById('inhalt').value = '';
+    } else {
+        alert('Bitte fülle Titel und Inhalt aus!');
     }
 }
 
-// Beim Laden der Seite
+function speichern() {
+    localStorage.setItem('mitteilungen', JSON.stringify(mitteilungen));
+}
+
+// Wenn Seite geladen:
+anzeigenErstellungsbereich();
 ladeMitteilungen();
