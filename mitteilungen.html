@@ -2,25 +2,30 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitteilungen</title>
     <link rel="stylesheet" href="style.css">
+    <script src="mitteilungen.js" defer></script>
 </head>
 <body>
-    <header>
+    <nav>
+        <ul>
+            <li><a href="übersicht.html">Übersicht</a></li>
+            <li><a href="mitteilungen.html">Mitteilungen</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
         <h1>Mitteilungen</h1>
-        <button onclick="location.href='index.html'">Logout</button>
-    </header>
+        <div id="mitteilungenListe"></div>
 
-    <form id="mitteilungForm">
-        <input type="text" id="title" placeholder="Titel" required>
-        <textarea id="message" placeholder="Nachricht" required></textarea>
-        <button type="submit">Erstellen</button>
-    </form>
+        <div id="mitteilungFormular" style="margin-top: 30px;">
+            <h2>Neue Mitteilung erstellen</h2>
+            <input type="text" id="titel" placeholder="Titel"><br><br>
+            <textarea id="inhalt" placeholder="Mitteilungstext" rows="5"></textarea><br><br>
+            <button onclick="mitteilungHinzufügen()">Mitteilung erstellen</button>
+        </div>
+    </div>
 
-    <ul id="mitteilungList"></ul>
-
-    <footer>SVB Meran</footer>
-    <script src="manageMessages.js"></script>
 </body>
 </html>
